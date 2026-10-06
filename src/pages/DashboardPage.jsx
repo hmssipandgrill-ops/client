@@ -4,7 +4,7 @@ import {
   LayoutDashboard, UtensilsCrossed, ShoppingBag, Users, Tag,
   BarChart3, Plus, Edit3, Trash2, Star, Eye, EyeOff, Upload,
   X, ChevronLeft, ChevronRight, Menu, TrendingUp, CheckCircle,
-  Clock, XCircle, Activity, Search,
+  Clock, XCircle, Activity, Search, Link2,
 } from 'lucide-react'
 import { useAuth } from '../context/AuthContext'
 import { menuService }     from '../services/menuService'
@@ -16,6 +16,7 @@ import { formatNaira }     from '../utils/currency'
 import { formatDateTime, timeAgo } from '../utils/date'
 import { STATUS_CONFIG }   from '../utils/orderStatus'
 import toast from 'react-hot-toast'
+import AyoposPanel from '../components/AyoposPanel'
 
 const PAGE_SIZE = 10
 
@@ -708,7 +709,7 @@ export default function DashboardPage() {
     { id:'menu',       icon:UtensilsCrossed,  label:'Menu Items' },
     { id:'orders',     icon:ShoppingBag,      label:'Orders' },
     { id:'categories', icon:Tag,              label:'Categories' },
-    ...(isAdmin ? [{ id:'users', icon:Users, label:'Users' }] : []),
+    ...(isAdmin ? [{ id:'users', icon:Users, label:'Users' }, { id:'ayopos', icon:Link2, label:'AYOPOS' }] : []),
   ]
 
   return (
@@ -747,6 +748,7 @@ export default function DashboardPage() {
           {tab === 'orders'     && <OrdersPanel isAdmin={isAdmin}/>}
           {tab === 'categories' && <CategoriesPanel/>}
           {tab === 'users' && isAdmin && <UsersPanel/>}
+          {tab === 'ayopos' && isAdmin && <AyoposPanel/>}
         </main>
       </div>
 
